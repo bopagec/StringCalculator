@@ -5,11 +5,20 @@ public class StringCalculator {
             return total;
         }
         else {
-            String[] split = numbers.replace("\n", ",").replace("\r", ",").split(",");
+            String delimiter = ",";
+
+            if(numbers.startsWith("//")){
+                delimiter = numbers.substring(2,3);
+                numbers = numbers.substring(3, numbers.length());
+            }
+
+            String[] split = numbers.replace("\n", delimiter).replace("\r", delimiter).split(delimiter);
 
             for(int i=0; i < split.length; i++){
-                int x = Integer.valueOf(split[i].trim());
-                total = total + x;
+                if(split[i].length() > 0){
+                    int x = Integer.valueOf(split[i].trim());
+                    total = total + x;
+                }
             }
         }
         return total;

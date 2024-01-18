@@ -42,4 +42,9 @@ public class StringCalculatorTest {
         Assertions.assertEquals(6, stringCalculator.Add("1\n2,3"));
         Assertions.assertEquals(1, stringCalculator.Add("1,\n"));
     }
+
+    @Test
+    public void testAddWhenDifferentDelimiterIsPresent(){
+        Assertions.assertEquals(3, stringCalculator.Add("//;\n1;2"));
+    }
 }
