@@ -55,4 +55,10 @@ public class StringCalculatorTest {
         Exception exception2 = Assertions.assertThrows(Exception.class, () -> stringCalculator.Add("-1,-2,-3,-4"));
         Assertions.assertEquals("Negatives not allowed:-1,-2,-3,-4", exception2.getMessage());
     }
+
+    @Test
+    public void testAddWhenNumbersGreaterThan1000(){
+        Assertions.assertEquals(2, stringCalculator.Add("1001,2"));
+    }
+
 }

@@ -23,9 +23,10 @@ public class StringCalculator {
             for(int i=0; i < split.length; i++){
                 if(split[i].length() > 0){
                     int x = Integer.valueOf(split[i].trim());
-                    if(x < 0) {
+                    if(x < 0 ) {
                         negatives.add(x);
-                    }else{
+                    }
+                    else if(x <= 1000){
                         total = total + x;
                     }
                 }
