@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 public class StringCalculator {
     public int Add(String numbers) {
         List<Integer> negatives = new ArrayList<>();
+        int unknownNumbers = 0;
 
         int total = 0;
         if(numbers == null || numbers.isBlank()){
@@ -22,16 +23,24 @@ public class StringCalculator {
 
             for(int i=0; i < split.length; i++){
                 if(split[i].length() > 0){
-                    int x = Integer.valueOf(split[i].trim());
-                    if(x < 0 ) {
-                        negatives.add(x);
+                    try{
+                        int x = Integer.valueOf(split[i].trim());
+
+                        if(x < 0 ) {
+                            negatives.add(x);
+                        }
+                        else if(x <= 1000){
+                            total = total + x;
+                        }
                     }
-                    else if(x <= 1000){
-                        total = total + x;
+                    catch (NumberFormatException e){
+                        unknownNumbers++;
                     }
+
                 }
             }
         }
+        System.out.println("unknown numbers: " + unknownNumbers);
         if(negatives.size() == 0){
             return total;
         }
