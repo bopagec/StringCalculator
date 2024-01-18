@@ -5,10 +5,10 @@ public class StringCalculator {
             return total;
         }
         else {
-            String[] split = numbers.split(",");
+            String[] split = numbers.replace("\n", ",").replace("\r", ",").split(",");
 
             for(int i=0; i < split.length; i++){
-                int x = Integer.valueOf(split[i]);
+                int x = Integer.valueOf(split[i].trim());
                 total = total + x;
             }
         }

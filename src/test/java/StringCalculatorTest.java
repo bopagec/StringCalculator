@@ -36,4 +36,10 @@ public class StringCalculatorTest {
         Assertions.assertEquals(16, stringCalculator.Add(" 123 3 7"));
         Assertions.assertEquals(6, stringCalculator.Add("+123-"));
     }
+
+    @Test
+    public void testAddWhenLineBetweenNumbers(){
+        Assertions.assertEquals(6, stringCalculator.Add("1\n2,3"));
+        Assertions.assertEquals(1, stringCalculator.Add("1,\n"));
+    }
 }
