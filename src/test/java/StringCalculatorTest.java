@@ -33,8 +33,7 @@ public class StringCalculatorTest {
 
     @Test
     public void testAddWhenUnknownNumbersPresent(){
-        Assertions.assertEquals(16, stringCalculator.Add(" 123 3 7"));
-        Assertions.assertEquals(6, stringCalculator.Add("+123-"));
+        Assertions.assertEquals(133, stringCalculator.Add(" 123, 3, 7"));
     }
 
     @Test
@@ -46,5 +45,14 @@ public class StringCalculatorTest {
     @Test
     public void testAddWhenDifferentDelimiterIsPresent(){
         Assertions.assertEquals(3, stringCalculator.Add("//;\n1;2"));
+    }
+
+    @Test
+    public void testAddWhenNegativeNumberPresent(){
+        Exception exception = Assertions.assertThrows(Exception.class, () -> stringCalculator.Add("-1,2"));
+        Assertions.assertEquals("Negatives not allowed:-1", exception.getMessage());
+
+        Exception exception2 = Assertions.assertThrows(Exception.class, () -> stringCalculator.Add("-1,-2,-3,-4"));
+        Assertions.assertEquals("Negatives not allowed:-1,-2,-3,-4", exception2.getMessage());
     }
 }

@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StringCalculator {
     public int Add(String numbers) {
+        List<Integer> negatives = new ArrayList<>();
+
         int total = 0;
         if(numbers == null || numbers.isBlank()){
             return total;
@@ -17,10 +23,22 @@ public class StringCalculator {
             for(int i=0; i < split.length; i++){
                 if(split[i].length() > 0){
                     int x = Integer.valueOf(split[i].trim());
-                    total = total + x;
+                    if(x < 0) {
+                        negatives.add(x);
+                    }else{
+                        total = total + x;
+                    }
                 }
             }
         }
-        return total;
+        if(negatives.size() == 0){
+            return total;
+        }
+        else{
+            String str = negatives.stream()
+                    .map(i -> String.valueOf(i))
+                    .collect(Collectors.joining(","));
+            throw new RuntimeException("Negatives not allowed:" + str);
+        }
     }
 }
